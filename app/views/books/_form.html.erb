@@ -3,7 +3,7 @@
 <%= simple_form_for @b ,:html => {:multipart => true} do |f| %>
 
   <%= select_tag 'category_id', options_for_select(@c),:prompt =>"select category"%>
-
+  <%=f.file_field :book_img%>
   <%= f.input :title %>
   <%= f.input :description %>
   <%= f.input :author %>
