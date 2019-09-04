@@ -1,0 +1,17 @@
+
+<p>
+<h2>user id:<%= @b.user_id%></h2>
+
+
+<h2><%= @b.title%>
+<%= @b.description%>
+<%= @b.author%></h2>
+
+<% if user_signed_in? %>
+     <% if current_user.id==@b.user_id %>
+    <%=link_to "edit",edit_book_path(@b)%>
+    <%=link_to "delete",book_path(@b),method: :delete,data: {confirm: "Sure?"}%>
+    <% end %>
+<% end %>
+
+</p>
