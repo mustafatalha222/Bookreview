@@ -1,3 +1,11 @@
 <h1>Edit Page</h1>
 
-<%= render 'form' %>
+<%= simple_form_for @b,:html => {:multipart => true} do |f| %>
+
+  <%=f.select :category_id,@c %>
+
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.input :author %>
+  <%= f.button :submit %>
+<% end %>

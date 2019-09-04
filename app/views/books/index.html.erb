@@ -1,11 +1,18 @@
-<h3>index</h3>
+<h3>index page  <%=params[:category]%></h3>
 
-<% @b.each do |b|%>
-<p>
-<h2><%=b.title%></h2>
+<% if @b.count == 0 %>
+    <h3> no books available in this category</h3>
+    <% else %>
 
-<%= link_to "show book",book_path(b)%>
-</p>
+    <% @b.each do |b|%>
+    <p>
+    <h2><%=b.title%></h2>
+
+    <%= link_to "show book",book_path(b)%>
+    </p>
+    <% end %>
+
+    <%= link_to "add book", new_book_path,class: "btn btn-default" %>
+        
 <% end %>
 
-<%= link_to "add book", new_book_path,class: "btn btn-default" %>

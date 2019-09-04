@@ -29,10 +29,24 @@
 
     <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <li><%=link_to "add book",new_book_path%></li>
-          
-          <% end %>
-          
+          <li><%=link_to "add book",new_book_path%></li> 
+          <% end %>        
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Categories
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
+    <% Category.all.each do |c|%>
+    <li class="<%= 'active' if params[:category]== c.name%>">
+    <%= link_to c.name, books_path(category: c.name),class: "link"%>
+    </li>
+    
+    <% end %>
+    </ul>
+          </li>       
     </ul>
 
   </div>
