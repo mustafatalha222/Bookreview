@@ -1,0 +1,7 @@
+<h1>Partial Review Form</h1>
+<%= simple_form_for ([@b,@b.reviews.build]) ,:html => {:multipart => true} do |f| %>
+
+  <%= f.input :rating %>
+  <%= f.input :comment %>
+  <%= f.button :submit %>
+<% end %>
