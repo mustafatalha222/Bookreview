@@ -5,6 +5,9 @@
 </div>
 
 <p class="col-md-7">
+<h2>Rating</h2>
+<div class="avgrating" data-score="<%= @avg%>"></div>
+<p>Based on <%= @b.reviews.count%> revies</p>
 <h2>user id:<%= @b.user_id%></h2>
 
 <h2>category:<%= @b.category_id%>  <%= @b.category.name%></h2>
@@ -19,6 +22,9 @@
     <div class="col-md-4">
         <%=link_to "add reviews",new_book_review_path(@b) %>
     </div>
+     <div class="col-md-4">
+        <%=render @b.reviews %>
+    </div>
 </div>
 
 <% if user_signed_in? %>
@@ -29,3 +35,24 @@
 <% end %>
 
 </p>
+
+<script>
+$('.review-rating').raty({
+  readOnly:  true,
+  score: function(){
+      return $(this).attr('data-score');
+  },
+  path: '/assets'
+});
+</script>
+
+
+<script>
+$('.avgrating').raty({
+  readOnly:  true,
+  score: function(){
+      return $(this).attr('data-score');
+  },
+  path: '/assets'
+});
+</script>

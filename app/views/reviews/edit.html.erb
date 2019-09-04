@@ -1,13 +1,13 @@
-<h1>Partial Review Form</h1>
-<%= simple_form_for ([@b,@b.reviews.build]) ,:html => {:multipart => true} do |f| %>
-<div class="rating-form">
+<h1>edit review Form</h1>
+<%= simple_form_for ([@b,@r]) ,:html => {:multipart => true} do |f| %>
+
+  <div class="rating-form">
   <label>Rating</label>
 </div>
   
   <%= f.input :comment %>
   <%= f.button :submit %>
 <% end %>
-
 
 <script>
 $('.rating-form').raty({

@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
     before_action :findbook
+    before_action :findreview ,only: [:edit, :update, :destroy]
+    before_action :authenticate_user!, only: [:new, :edit]
 
     def new
         @r=Review.new
@@ -10,7 +12,7 @@ class ReviewsController < ApplicationController
         @r.book_id=@b.id
         @r.user_id=current_user.id
         if @r.save
-            redirect_to book_path(@r)
+            redirect_to book_path(@b)
         else
             render 'new'
         end
@@ -22,18 +24,28 @@ class ReviewsController < ApplicationController
 
 
     def update
-        
+        if @r.update(paramsf)
+            redirect_to book_path(@b)
+        else
+            render 'edit'
+        end
     end
 
-    def index     
+    def destroy
+        @r.destroy
+        redirect_to book_path(@b)    
     end
 
     private
     def findbook
         @b=Book.find(params[:book_id])
-    end
+    end 
 
     def paramsf
-        params.find(:review).permit(:rating,:comment)
+        params.require(:review).permit(:rating,:comment)
+    end
+
+    def findreview
+        @r=Review.find(params[:id])
     end
 end

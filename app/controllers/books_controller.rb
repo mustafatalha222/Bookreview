@@ -1,5 +1,7 @@
 class BooksController < ApplicationController
     before_action :findbook, only: [:edit,:show,:destroy,:update]
+    before_action :authenticate_user!, only: [:new, :edit]
+
 
     def new
         @b= current_user.books.build
@@ -46,6 +48,11 @@ class BooksController < ApplicationController
     end
 
     def show
+        if @b.reviews.blank?
+            @avg=0
+        else
+            @avg= @b.reviews.average(:rating).round(2)
+        end
     end
 
 

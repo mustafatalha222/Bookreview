@@ -1,0 +1,14 @@
+<div>
+<div class="review-rating" data-score="<%=review.rating%>"></div>
+
+<%=review.comment%>
+
+ <% if user_signed_in?%>
+    <% if current_user.id == review.user_id %>
+<%=link_to "edit",edit_book_review_path(review.book,review)%>
+<%=link_to "delete",book_review_path(review.book,review),method: :delete,data: {confirm: "Sure?"}%>
+<% end %>
+
+<% end %>
+
+</div>
