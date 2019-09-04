@@ -3,7 +3,7 @@
 <%= simple_form_for @b,:html => {:multipart => true} do |f| %>
 
   <%=f.select :category_id,@c %>
-
+   <%=f.file_field :book_img%>
   <%= f.input :title %>
   <%= f.input :description %>
   <%= f.input :author %>

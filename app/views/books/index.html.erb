@@ -4,15 +4,26 @@
     <h3> no books available in this category</h3>
     <% else %>
 
-    <% @b.each do |b|%>
-    <p>
-    <h2><%=b.title%></h2>
 
-    <%= link_to "show book",book_path(b)%>
-    </p>
+
+    <% @b.each do |b|%>
+    
+    <div class="row">
+    <div class="col-md-3">
+   
+    <a href="/books/<%=b.id%>">
+        <%= image_tag b.book_img(:book_show), class: "book"%>
+    </a>
+     <h2><%=b.title%></h2>
+    
+    <%= link_to "show",book_path(b)%>
     <% end %>
 
+<br><hr/>
     <%= link_to "add book", new_book_path,class: "btn btn-default" %>
-        
+    <br>
+       </div> 
 <% end %>
 
+</div> 
+ 
